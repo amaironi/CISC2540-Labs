@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlexeo2uhpjqa"]
+
+[ext_resource type="Texture2D" uid="uid://xxhpufxq1rsk" path="res://Table+Chaise.png" id="1_xkq1l"]
+
+[node name="Table+chaise" type="Sprite2D"]
+self_modulate = Color(0, 0.660177, 0.663598, 1)
+position = Vector2(490, 539)
+scale = Vector2(0.572407, 0.586387)
+texture = ExtResource("1_xkq1l")

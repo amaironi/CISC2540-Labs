@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://pxkm0llikmh2"]
+
+[ext_resource type="Texture2D" uid="uid://b5id8go83bdb3" path="res://pomme.png" id="1_qqnwg"]
+
+[node name="Pomme" type="Sprite2D"]
+position = Vector2(564, 509)
+texture = ExtResource("1_qqnwg")
