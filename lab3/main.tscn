@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://b410fjyp14e54" path="res://bowl.tscn" id="3_r5mfc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bya8m"]
-font_size = 36
+font_size = 30
 font_color = Color(0.556863, 0.768627, 0, 1)
-outline_size = 8
+outline_size = 5
 outline_color = Color(0.794876, 1, 0.464353, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_v4tx2"]
@@ -21,10 +21,10 @@ shadow_color = Color(0.0901961, 0.717647, 0.490196, 1)
 script = ExtResource("1_kkdi3")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 43.0
-offset_top = 33.0
-offset_right = 198.0
-offset_bottom = 83.0
+offset_left = 23.0
+offset_top = 23.0
+offset_right = 178.0
+offset_bottom = 73.0
 text = "WEALTH:"
 label_settings = SubResource("LabelSettings_bya8m")
 

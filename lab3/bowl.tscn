@@ -7,6 +7,7 @@
 size = Vector2(159, 60)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(1, -1)
 script = ExtResource("1_ggep6")
 
 [node name="Bowl" type="Sprite2D" parent="."]
@@ -14,8 +15,8 @@ position = Vector2(15.5, 11)
 texture = ExtResource("1_csttc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(12, 54)
-scale = Vector2(0.01, 0.01)
+position = Vector2(-10000, 54)
+scale = Vector2(1e-05, 1e-05)
 shape = SubResource("RectangleShape2D_be2bu")
 
 [node name="Area2D" type="Area2D" parent="."]
