@@ -24,3 +24,9 @@ func _on_bill_score_increase_100(amount: Variant) -> void:
 
 func _on_bill_score_increase_25(amount: Variant) -> void:
 	score+=25 # Replace with function body.
+
+
+func _on_timer_timeout() -> void:
+	get_tree().paused = true
+	var winlabel = $Win
+	winlabel.text = "YOU LOSE. TIME TO GO BACK TO WORK..."
