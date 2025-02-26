@@ -24,7 +24,38 @@ label_settings = SubResource("LabelSettings_bya8m")
 position = Vector2(406, 478)
 
 [node name="25bill" parent="." instance=ExtResource("3_gb00d")]
-position = Vector2(408, -3)
+position = Vector2(398, -60)
 
-[node name="25bill2" parent="." instance=ExtResource("2_2d686")]
-position = Vector2(755, -130)
+[node name="25bill2" parent="." instance=ExtResource("3_gb00d")]
+position = Vector2(558, -592)
+
+[node name="25bill3" parent="." instance=ExtResource("3_gb00d")]
+position = Vector2(654, -1211)
+
+[node name="25bill4" parent="." instance=ExtResource("3_gb00d")]
+position = Vector2(214, -342)
+
+[node name="100bill" parent="." instance=ExtResource("2_2d686")]
+position = Vector2(869, -358)
+
+[node name="100bill2" parent="." instance=ExtResource("2_2d686")]
+position = Vector2(363, -1373)
+
+[node name="100bill3" parent="." instance=ExtResource("2_2d686")]
+position = Vector2(1112, -919)
+
+[node name="100bill4" parent="." instance=ExtResource("2_2d686")]
+position = Vector2(1142, -2115)
+
+[node name="25bill5" parent="." instance=ExtResource("3_gb00d")]
+position = Vector2(153, -1760)
+
+[connection signal="score_increase25" from="25bill" to="." method="_on_bill_score_increase_25"]
+[connection signal="score_increase25" from="25bill2" to="." method="_on_bill_score_increase_25"]
+[connection signal="score_increase25" from="25bill3" to="." method="_on_bill_score_increase_25"]
+[connection signal="score_increase25" from="25bill4" to="." method="_on_bill_score_increase_25"]
+[connection signal="score_increase100" from="100bill" to="." method="_on_bill_score_increase_100"]
+[connection signal="score_increase100" from="100bill2" to="." method="_on_bill_score_increase_100"]
+[connection signal="score_increase100" from="100bill3" to="." method="_on_bill_score_increase_100"]
+[connection signal="score_increase100" from="100bill4" to="." method="_on_bill_score_increase_100"]
+[connection signal="score_increase25" from="25bill5" to="." method="_on_bill_score_increase_25"]

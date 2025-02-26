@@ -9,7 +9,8 @@ size = Vector2(109, 40.5)
 [node name="25bill" type="RigidBody2D"]
 position = Vector2(115, 40)
 mass = 0.001
-gravity_scale = 0.1
+gravity_scale = 1.1
+constant_torque = -0.8
 script = ExtResource("1_r25wr")
 
 [node name="25Bill" type="Sprite2D" parent="."]
@@ -28,4 +29,5 @@ shape = SubResource("RectangleShape2D_wi0rl")
 position = Vector2(-62.5, -21.25)
 shape = SubResource("RectangleShape2D_wi0rl")
 
+[connection signal="score_increase25" from="." to="." method="_on_score_increase_25"]
 [connection signal="area_entered" from="25Bill/Area2D" to="." method="_on_area_2d_area_entered"]
