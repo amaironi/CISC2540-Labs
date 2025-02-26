@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b410fjyp14e54"]
+
+[ext_resource type="Texture2D" uid="uid://jky822c6ip7o" path="res://BOWL.png" id="1_csttc"]
+[ext_resource type="Script" path="res://bowl.gd" id="1_ggep6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_be2bu"]
+size = Vector2(178, 101.5)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_ggep6")
+
+[node name="Bowl" type="Sprite2D" parent="."]
+position = Vector2(15.5, 11)
+texture = ExtResource("1_csttc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(12.5, 105)
+shape = SubResource("RectangleShape2D_be2bu")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(23.5, 7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-7.5, -40)
+shape = SubResource("RectangleShape2D_be2bu")

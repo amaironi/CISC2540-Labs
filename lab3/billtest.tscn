@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddtgt2hit57pj"]
+
+[ext_resource type="Texture2D" uid="uid://dgvr08hv48eic" path="res://25bill.png" id="1_5icas"]
+
+[sub_resource type="GDScript" id="GDScript_exq6x"]
+script/source = "extends RigidBody2D
+
+var score = 0
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass  # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+# Detect clicks on the area
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			# Check if the mouse is within the rectangle's bounds
+			var collision_shape = $CollisionShape2D  # Assuming the collision shape is a child of this node
+			var rect_shape = collision_shape.shape  # Get the RectangleShape2D from the CollisionShape2D node
+			var local_mouse_pos = to_local(get_global_mouse_position())  # Convert global mouse position to local
+			
+			if rect_shape.get_rect().has_point(local_mouse_pos):
+				score += 1
+				print(score)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7kmm3"]
+size = Vector2(212, 77)
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_exq6x")
+
+[node name="25Bill" type="Sprite2D" parent="."]
+position = Vector2(188, 92)
+texture = ExtResource("1_5icas")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="25Bill"]
+
+[node name="Area2D" type="Area2D" parent="25Bill/RigidBody2D"]
+position = Vector2(-188, -92)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="25Bill/RigidBody2D/Area2D"]
+position = Vector2(187, 92.5)
+shape = SubResource("RectangleShape2D_7kmm3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="25Bill/RigidBody2D"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_7kmm3")
+disabled = true
+
+[connection signal="area_entered" from="25Bill/RigidBody2D/Area2D" to="." method="_on_area_2d_area_entered"]
