@@ -1,5 +1,5 @@
 # CISC2540 Labs
-Latest Lab: #3\
+Latest Lab: #3
 
 LAB 3:\
 Made a "money grabber" game.\
