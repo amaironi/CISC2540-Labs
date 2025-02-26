@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://6qsexhpurw5s"]
+[gd_scene load_steps=7 format=3 uid="uid://6qsexhpurw5s"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_kkdi3"]
 [ext_resource type="PackedScene" uid="uid://7b6p8gqdkmpb" path="res://100bill.tscn" id="2_2d686"]
@@ -8,6 +8,14 @@
 [sub_resource type="LabelSettings" id="LabelSettings_bya8m"]
 font_size = 36
 font_color = Color(0.556863, 0.768627, 0, 1)
+outline_size = 8
+outline_color = Color(0.794876, 1, 0.464353, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v4tx2"]
+font_size = 55
+font_color = Color(0.899649, 0.986541, 0.629018, 1)
+shadow_size = 20
+shadow_color = Color(0.0901961, 0.717647, 0.490196, 1)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_kkdi3")
@@ -49,6 +57,15 @@ position = Vector2(1142, -2115)
 
 [node name="25bill5" parent="." instance=ExtResource("3_gb00d")]
 position = Vector2(153, -1760)
+
+[node name="Win" type="Label" parent="."]
+offset_left = 53.0
+offset_top = 281.0
+offset_right = 1217.0
+offset_bottom = 364.0
+text = "
+"
+label_settings = SubResource("LabelSettings_v4tx2")
 
 [connection signal="score_increase25" from="25bill" to="." method="_on_bill_score_increase_25"]
 [connection signal="score_increase25" from="25bill2" to="." method="_on_bill_score_increase_25"]

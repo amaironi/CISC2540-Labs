@@ -10,9 +10,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var label = $Label
+	var winlabel = $Win
 	label.text = "Wealth (need at least 400 to win): " + str(score) + "/500"
 	if score >= 400:
 		get_tree().paused = true
+		winlabel.text = "YOU WIN! ENJOY THE HIGH ROLLER-LIFE!"
+
+		
 
 func _on_bill_score_increase_100(amount: Variant) -> void:
 	score+=100 # Replace with function body.
