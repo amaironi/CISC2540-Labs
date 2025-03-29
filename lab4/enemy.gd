@@ -48,6 +48,9 @@ func _process(delta: float) -> void:
 		stop = true
 		$dead_enemy.play("dead")
 		$Label3D.text = "HP: 0"
+		
+	if hp <= 0:
+		$Label3D.text = "HP: 0"
 	
 	if Input.is_action_just_pressed("Swing"):
 		$Area3D.monitoring = true
