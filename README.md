@@ -1,5 +1,8 @@
 # CISC2540 Labs
-Latest Lab: #3
+Latest Lab: #4
+
+LAB 4:\
+Making a little combat arena
 
 LAB 3:\
 Made a "money grabber" game.\
