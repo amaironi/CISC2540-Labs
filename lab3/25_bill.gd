@@ -12,5 +12,5 @@ func _process(delta):
 
 
 func _on_area_2d_area_entered(area):
-	queue_free()
+	position.y += 100
 	emit_signal("score_increase25", 25)

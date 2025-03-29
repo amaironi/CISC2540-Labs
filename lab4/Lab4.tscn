@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://c37avingvjjwb"]
+
+[ext_resource type="Script" uid="uid://rse6oguy6p4n" path="res://character_body_3d.gd" id="1_adly7"]
+[ext_resource type="PackedScene" uid="uid://dkityrj2ltoeo" path="res://sword.tscn" id="2_ew2x3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ew2x3"]
+sky_top_color = Color(0.297565, 0.458507, 0.647883, 1)
+sky_horizon_color = Color(0.601539, 0.67618, 0.702358, 1)
+ground_bottom_color = Color(0.071096, 0.208718, 0.124051, 1)
+ground_horizon_color = Color(0.601539, 0.67618, 0.702358, 1)
+
+[sub_resource type="Sky" id="Sky_jnyfl"]
+sky_material = SubResource("ProceduralSkyMaterial_ew2x3")
+
+[sub_resource type="Environment" id="Environment_nrbju"]
+background_mode = 2
+sky = SubResource("Sky_jnyfl")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2r4uw"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bhwkl"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17042, -0.380636, -6.38095)
+use_collision = true
+size = Vector3(9.71887, 0.539551, 26.5224)
+
+[node name="Global Lighting" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Global Lighting"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Global Lighting"]
+environment = SubResource("Environment_nrbju")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50447, -0.0216863, -0.232456)
+script = ExtResource("1_adly7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60784, 0)
+shape = SubResource("CapsuleShape3D_2r4uw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_bhwkl")
+
+[node name="neck" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18035, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0866337, -0.062505, -0.260445)
+
+[node name="Sword" parent="CharacterBody3D/neck" instance=ExtResource("2_ew2x3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.446125, -0.502171, -1.1)
+
+[editable path="CharacterBody3D/neck/Sword"]
