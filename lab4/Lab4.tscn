@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c37avingvjjwb"]
+[gd_scene load_steps=19 format=3 uid="uid://c37avingvjjwb"]
 
 [ext_resource type="Script" uid="uid://rse6oguy6p4n" path="res://character_body_3d.gd" id="1_adly7"]
 [ext_resource type="PackedScene" uid="uid://dkityrj2ltoeo" path="res://sword.tscn" id="2_ew2x3"]
@@ -23,16 +23,95 @@ glow_enabled = true
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bhwkl"]
 
+[sub_resource type="Animation" id="Animation_jnyfl"]
+resource_name = "dead"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("neck/Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.46667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.52367, 0, 2.0944)]
+}
+
+[sub_resource type="Animation" id="Animation_nrbju"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("neck/Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2r4uw"]
+_data = {
+&"RESET": SubResource("Animation_nrbju"),
+&"dead": SubResource("Animation_jnyfl")
+}
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ew2x3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jnyfl"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jnyfl"]
+
+[sub_resource type="Animation" id="Animation_2r4uw"]
+resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 1.5708)]
+}
+
+[sub_resource type="Animation" id="Animation_bhwkl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i3bc8"]
+_data = {
+&"RESET": SubResource("Animation_bhwkl"),
+&"dead": SubResource("Animation_2r4uw")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_jnyfl"]
+font_size = 40
+font_color = Color(0.101682, 0.328822, 0.279578, 1)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17042, -0.380636, -6.38095)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.243067, -0.380636, -7.74694)
 use_collision = true
-size = Vector3(9.71887, 0.539551, 26.5224)
+size = Vector3(35.5349, 0.539551, 29.2544)
 
 [node name="Global Lighting" type="Node3D" parent="."]
 
@@ -44,7 +123,7 @@ shadow_enabled = true
 environment = SubResource("Environment_nrbju")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.50447, -0.0216863, -0.232456)
+transform = Transform3D(0.927719, 0, -0.373279, 0, 1, 0, 0.373279, 0, 0.927719, -2.50447, -0.578408, -0.232456)
 script = ExtResource("1_adly7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
@@ -60,17 +139,99 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18035, 0)
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/neck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0866337, -0.062505, -0.260445)
 
+[node name="win_text" type="Label3D" parent="CharacterBody3D/neck/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0235066, -0.00437415, -1.24812)
+visible = false
+no_depth_test = true
+fixed_size = true
+text = "YOU WIN
+"
+
+[node name="draw_text" type="Label3D" parent="CharacterBody3D/neck/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0235066, -0.00437415, -1.24812)
+visible = false
+no_depth_test = true
+fixed_size = true
+text = "IT'S A DRAW"
+
+[node name="lose_text" type="Label3D" parent="CharacterBody3D/neck/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0235066, -0.00437415, -1.24812)
+visible = false
+no_depth_test = true
+fixed_size = true
+text = "YOU LOSE
+"
+
 [node name="Sword" parent="CharacterBody3D/neck" instance=ExtResource("2_ew2x3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.446125, -0.502171, -1.1)
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11838, 1.33074, -10.5708)
+[node name="dead" type="AnimationPlayer" parent="CharacterBody3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_2r4uw")
+}
+
+[node name="Enemy" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.05191, 1.34469, -12.267)
+mass = 0.001
 script = ExtResource("3_jnyfl")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.451371, 0)
 shape = SubResource("CapsuleShape3D_ew2x3")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy/CollisionShape3D"]
 mesh = SubResource("CapsuleMesh_jnyfl")
 
+[node name="Label3D" type="Label3D" parent="Enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.816677, 0)
+pixel_size = 0.01
+billboard = 1
+no_depth_test = true
+text = "HP: "
+
+[node name="Area3D" type="Area3D" parent="Enemy"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.466044, 0)
+shape = SubResource("CapsuleShape3D_jnyfl")
+
+[node name="Timer" type="Timer" parent="Enemy/Area3D"]
+wait_time = 0.8
+one_shot = true
+
+[node name="Sword_enemy" parent="Enemy" instance=ExtResource("2_ew2x3")]
+transform = Transform3D(0.986763, -0.0115297, 0.16176, 0.1587, -0.136573, -0.977835, 0.0333663, 0.990563, -0.132936, 0.161628, -0.39843, 1.00002)
+
+[node name="attack_timer" type="Timer" parent="Enemy"]
+wait_time = 0.9
+one_shot = true
+
+[node name="dead_enemy" type="AnimationPlayer" parent="Enemy"]
+libraries = {
+&"": SubResource("AnimationLibrary_i3bc8")
+}
+
+[node name="Label" type="Label" parent="."]
+offset_left = 36.0
+offset_top = 596.0
+offset_right = 167.0
+offset_bottom = 638.0
+text = "HEALTH: "
+label_settings = SubResource("LabelSettings_jnyfl")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 1151.0
+offset_bottom = 648.0
+color = Color(0.94902, 0, 0, 0.121569)
+
+[node name="hit_timer" type="Timer" parent="ColorRect"]
+wait_time = 0.1
+
+[connection signal="area_entered" from="Enemy/Area3D" to="Enemy" method="_on_area_3d_area_entered"]
+[connection signal="timeout" from="Enemy/Area3D/Timer" to="Enemy" method="_on_timer_timeout"]
+[connection signal="timeout" from="Enemy/attack_timer" to="Enemy" method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="ColorRect/hit_timer" to="Enemy" method="_on_hit_timer_timeout"]
+
 [editable path="CharacterBody3D/neck/Sword"]
+[editable path="Enemy/Sword_enemy"]

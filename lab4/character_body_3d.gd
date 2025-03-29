@@ -2,9 +2,10 @@ extends CharacterBody3D
 
 @onready var camera_3d = $neck/Camera3D
 @onready var neck = $neck
+var hp = 5
+var loss = false
 
-
-const SPEED = 5.0
+var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -17,7 +18,7 @@ func _physics_process(delta):
 		
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor() && loss == false:
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
@@ -34,16 +35,35 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("Swing"):
+	$"../Label".text = "HEALTH: " + str(hp)
+	
+	if Input.is_action_just_pressed("Swing") && loss == false:
 		$neck/Sword/AnimationPlayer.play("Swing")
 
+	if hp == 0:
+		SPEED = 0
+		$"../Enemy".stop = true
+		$neck/Camera3D/lose_text.visible = true
+		loss = true
+		hp = -1
+		$dead.play("dead")
+		
+	if hp <= -1:
+		$"../Label".text = "HEALTH: 0"
+		
+	if loss == true && $"../Enemy".win == true:
+		$neck/Camera3D/win_text.visible = false
+		$neck/Camera3D/lose_text.visible = false
+		$neck/Camera3D/draw_text.visible = true
+		
+		
 func _input(event):
 	if event is InputEventMouseButton:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif Input.is_action_just_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion && loss == false:
 		camera_3d.rotate_x(-event.relative.y *0.005)
 		neck.rotate_y(-event.relative.x*0.005)
 		camera_3d.rotation.x = clamp(camera_3d.rotation.x, deg_to_rad(-30), deg_to_rad(60))

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkityrj2ltoeo"]
+[gd_scene load_steps=7 format=3 uid="uid://dkityrj2ltoeo"]
 
 [sub_resource type="Animation" id="Animation_o8xsq"]
 resource_name = "Swing"
@@ -69,6 +69,8 @@ metallic_specular = 1.0
 roughness = 0.87
 refraction_scale = 1.0
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_o8xsq"]
+
 [node name="Node3D" type="Node3D"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -80,3 +82,8 @@ libraries = {
 transform = Transform3D(0.2, 0, 0, 0, -0.383022, -0.128558, 0, 0.321394, -0.153209, 0, 0, 0)
 mesh = SubResource("CylinderMesh_o8xsq")
 surface_material_override/0 = SubResource("StandardMaterial3D_o8xsq")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+shape = SubResource("CylinderShape3D_o8xsq")
