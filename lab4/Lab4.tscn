@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c37avingvjjwb"]
+[gd_scene load_steps=11 format=3 uid="uid://c37avingvjjwb"]
 
 [ext_resource type="Script" uid="uid://rse6oguy6p4n" path="res://character_body_3d.gd" id="1_adly7"]
 [ext_resource type="PackedScene" uid="uid://dkityrj2ltoeo" path="res://sword.tscn" id="2_ew2x3"]
+[ext_resource type="Script" uid="uid://ch2l3gql21073" path="res://enemy.gd" id="3_jnyfl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ew2x3"]
 sky_top_color = Color(0.297565, 0.458507, 0.647883, 1)
@@ -21,6 +22,10 @@ glow_enabled = true
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2r4uw"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bhwkl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ew2x3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jnyfl"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -57,5 +62,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0866337, -0.062505, -0.260
 
 [node name="Sword" parent="CharacterBody3D/neck" instance=ExtResource("2_ew2x3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.446125, -0.502171, -1.1)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11838, 1.33074, -10.5708)
+script = ExtResource("3_jnyfl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("CapsuleShape3D_ew2x3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_jnyfl")
 
 [editable path="CharacterBody3D/neck/Sword"]
