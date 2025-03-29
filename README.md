@@ -6,8 +6,8 @@ Made a first-person "fighting arena" game.\
 Created a "sword" (cylinder placeholder) which the player can swing once per 0.8s. If the player swings it on the enemy, the enemy loses 1 of 5 health points.\
 Created an enemy with the same sword. This enemy tries to get close to the player. If it is within striking range, the player has a small window to move out the way or will lose 1 of 5 health points.\
 Created a feedback for getting hit, where a red translucent rectangle box will briefly appear upon the player getting hit.\
-There is a not-uncommon scenario where both the player and the enemy lose all their health. In which case, the player still gets the death animation, but the text will indicate a draw.
-Learned the basics of 3D level designing, how to make an object follow a player (and rotate accordingly), how to animate a node
+There is a not-uncommon scenario where both the player and the enemy lose all their health. In which case, the player still gets the death animation, but the text will indicate a draw.\
+Learned the basics of 3D level designing (CSG objects, 3D Labels, interaction between 2D and 3D editor, lighting) , how to make an object follow a player (and rotate accordingly), how to animate a node
 
 LAB 3:\
 Made a "money grabber" game.\
