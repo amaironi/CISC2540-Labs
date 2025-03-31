@@ -23,6 +23,21 @@ glow_enabled = true
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bhwkl"]
 
+[sub_resource type="Animation" id="Animation_nrbju"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("neck/Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_jnyfl"]
 resource_name = "dead"
 length = 1.5
@@ -39,21 +54,6 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(1.52367, 0, 2.0944)]
 }
 
-[sub_resource type="Animation" id="Animation_nrbju"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("neck/Camera3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2r4uw"]
 _data = {
 &"RESET": SubResource("Animation_nrbju"),
@@ -65,21 +65,6 @@ _data = {
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jnyfl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jnyfl"]
-
-[sub_resource type="Animation" id="Animation_2r4uw"]
-resource_name = "dead"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.966667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 1.5708)]
-}
 
 [sub_resource type="Animation" id="Animation_bhwkl"]
 length = 0.001
@@ -94,6 +79,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2r4uw"]
+resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 1.5708)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i3bc8"]
@@ -165,6 +165,9 @@ text = "YOU LOSE
 [node name="Sword" parent="CharacterBody3D/neck" instance=ExtResource("2_ew2x3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.446125, -0.502171, -1.1)
 
+[node name="MeshInstance3D" parent="CharacterBody3D/neck/Sword" index="1"]
+transform = Transform3D(0.2, 0, 0, 0, -0.383022, -0.128558, 0, 0.321394, -0.153209, 0, 0, 0)
+
 [node name="dead" type="AnimationPlayer" parent="CharacterBody3D"]
 libraries = {
 &"": SubResource("AnimationLibrary_2r4uw")
@@ -201,6 +204,9 @@ one_shot = true
 
 [node name="Sword_enemy" parent="Enemy" instance=ExtResource("2_ew2x3")]
 transform = Transform3D(0.986763, -0.0115297, 0.16176, 0.1587, -0.136573, -0.977835, 0.0333663, 0.990563, -0.132936, 0.161628, -0.39843, 1.00002)
+
+[node name="MeshInstance3D" parent="Enemy/Sword_enemy" index="1"]
+transform = Transform3D(0.2, 0, 0, 0, -0.383022, -0.128558, 0, 0.321394, -0.153209, 0, 0, 0)
 
 [node name="attack_timer" type="Timer" parent="Enemy"]
 wait_time = 0.9
